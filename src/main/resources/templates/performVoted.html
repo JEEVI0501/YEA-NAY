@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .votelist{
+            position: relative;
+            float: left;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<h3 style="color: coral">Hello Voter!</h3>
+<h3 th:text="${citizens.rollno}+' '+${citizens.firstname}" style="color: burlywood">
+</h3>
+<div th:each="candidate : ${candidates}" class="card votelist" >
+    <img src="https://p.kindpng.com/picc/s/21-211180_transparent-businessman-clipart-png-user-man-icon-png.png" alt="Voting" width="150" height="150">
+<div class="body">
+    <div class="card-title" style="width:18rem">
+        <h4 th:text="${candidate.name}" style="color: chocolate; align-content:center"></h4>
+        <a th:href="@{/voteFor(id=${candidate.id})}" class="btn btn-primary" style="float: right">Vote</a>
+    </div>
+</div>
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>RESULT</title>
+        <style>
+            .main{
+                /* text-align:center; */
+                padding:70px 440px;
+            }
+        </style>
+    </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <body>
+    <div class="main">
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        <script th:inline="javascript">
+            var array=[[${candidates}]];
+            console.log(array);
+            //const xnames=Object.keys(array);
+            //const ynames=Object.values(array);
+            let y = array.map(({ numberOfVotes }) => numberOfVotes );
+            const yValues=Object.values(y);
+            let x = array.map(({ name }) => name );
+            const xValues=Object.values(x);
+            // console.log(result);
+            //var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+            //var yValues = [10, 20, 30, 40, 50];
+            var barColors = "crimson";
+            console.log(xValues);
+            console.log(yValues);
+            new Chart("myChart", {
+                type: "bar",
+                data: {
+                    labels: xValues,    datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+                },
+                options: {
+                    legend: {display: false},
+                    title: {
+                        display: true,
+                        text: "voting"
+                    }
+                }
+            });
+        </script>
+    </div>
+<!--    <div th:each="candidate : ${candidates}" class="card votelist" >-->
+<!--         <div class="body">-->
+<!--            <div class="card-title" >-->
+<!--                <h4 th:text="${candidate.name}" style="color: chocolate; align-content:center"></h4>-->
+<!--                <a th:href="@{/voteFor(id=${candidate.id})}" class="btn btn-primary" style="float: right">Vote</a>-->
+<!--            </div>-->
+<!--         </div>-->
+
+    </body>
+
+</html>
